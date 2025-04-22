@@ -1,6 +1,6 @@
 [![Docker Image CI](https://github.com/gdoct/ipvcr/actions/workflows/docker-image.yml/badge.svg)](https://github.com/gdoct/ipvcr/actions/workflows/docker-image.yml)
 # IPVCR: A Docker-based IPTV Recorder / Scheduler
-![image](https://github.com/user-attachments/assets/7c23f585-7103-4eda-aa75-ba20adfd9c4b)
+![image](https://github.com/user-attachments/assets/f8fbb0b1-47d8-407a-bfff-0515cdc3ba7e)
 
 A web VCR in a docker image. 
 This started out as a project so that I could schedule ffmpeg to record some tv. How complex can a simple wrapper for the Linux ```at``` command become? But this has quickly evolved into a semi-overengineered project complete with security, configuration management, full CI/CD, and more planned.
