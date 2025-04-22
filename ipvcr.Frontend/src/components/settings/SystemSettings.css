@@ -1,0 +1,53 @@
+/* SystemSettings.css - Custom styling for System Settings Component */
+
+/* Make paragraph text more readable - brighter colors against dark background */
+.card p {
+  color: #cccccc !important;  /* Light gray text */
+  font-size: 1.05rem;  /* Slightly larger for better readability */
+  line-height: 1.6;  /* Increase line height for readability */
+}
+
+/* Make text-muted elements more visible */
+.text-muted {
+  color: #aaaaaa !important;  /* Lighter gray for better contrast */
+}
+
+/* Style for the gear icon animation */
+.spinner {
+  display: inline-block;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Enhance the card styling to match retro VCR theme */
+.card-header.bg-light {
+  background: linear-gradient(to right, #00b2e3, #007ab2) !important;
+  color: white;
+  font-family: 'VCR OSD Mono', 'Courier New', monospace;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Make alert text more readable */
+.alert {
+  color: white;
+}
+
+/* Enhance button styling with neon glow on hover */
+.btn:hover {
+  box-shadow: 0 0 15px rgba(0, 178, 227, 0.8);
+}
+
+/* Add special styling for maintenance-related content */
+.maintenance-section h5 {
+  color: #00ffff; /* Cyan for key headings */
+  font-family: 'VCR OSD Mono', 'Courier New', monospace;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}

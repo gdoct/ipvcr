@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <CompilerVisibleProperty Include="RootNamespace" />
+      <CompilerVisibleProperty Include="ProjectDir" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="22.0.12" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <DefineConstants>WINDOWS</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' == 'Linux'">
+    <DefineConstants>LINUX</DefineConstants>
+  </PropertyGroup>
+
+  <Target Name="CopyPlatformSchedulers" AfterTargets="Build">
+    <ItemGroup>
+      <WindowsScheduler Include="..\ipvcr.Scheduling.Windows\bin\$(Configuration)\**\*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WindowsScheduler)" DestinationFolder="$(OutputPath)\windows" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ipvcr.Logic\ipvcr.Logic.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+
+</Project>

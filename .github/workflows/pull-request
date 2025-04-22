@@ -1,0 +1,49 @@
+name: Run pull request checks
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  DOTNET_VERSION: '8.0.x'
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for proper analysis
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Run unit tests
+      run: dotnet test
+      
+    # Add .NET code analysis
+    - name: Run .NET Code Analysis
+      run: |
+        dotnet tool install --global dotnet-format
+        dotnet build /p:EnableNETAnalyzers=true /p:EnforceCodeStyleInBuild=true /p:AnalysisLevel=latest --no-restore
+
+    # Initialize CodeQL
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: csharp
+      

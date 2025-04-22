@@ -1,0 +1,600 @@
+/* Retro 80's VCR Theme for Bootstrap */
+
+:root {
+  /* Color palette - adjusted based on screenshots */
+  --vcr-black: #121212;
+  --vcr-dark-gray: #222222;
+  --vcr-gray: #444444;
+  --vcr-light-gray: #888888;
+  --vcr-silver: #cccccc;
+  --vcr-blue: #00b2e3;      /* Standard blue */
+  --vcr-bright-blue: #00ffff; /* Cyan */
+  --vcr-purple: #9933cc;
+  --vcr-magenta: #ff00ff;   /* Hot pink */
+  --vcr-red: #ff3333;
+  --vcr-orange: #ff6600;
+  --vcr-yellow: #ffcc00;
+  --vcr-green: #33ff33;
+  --vcr-light-green: #00ff66;
+  
+  /* Text colors */
+  --vcr-text-normal: #cccccc;  /* Light gray for normal text */
+  --vcr-text-highlight: #00ffff; /* Cyan for highlighted text */
+  --vcr-text-success: #33ff33; /* Green for success/positive text */
+  --vcr-text-alert: #ff00ff;   /* Magenta for alert/emphasis text */
+  --vcr-text-warning: #ffcc00; /* Yellow for warnings */
+  --vcr-text-danger: #ff3333;  /* Red for errors/danger */
+  --vcr-text-muted: #aaaaaa;   /* Muted text - updated from #888888 to #aaaaaa for better contrast */
+  
+  /* Font families */
+  --vcr-display-font: 'VCR OSD Mono', 'Courier New', monospace;
+  --vcr-body-font: 'VCR OSD Mono', 'Courier New', monospace; /* Changed from Press Start 2P for better readability */
+}
+
+/* Global styles */
+body {
+  background-color: var(--vcr-black);
+  color: var(--vcr-text-normal);
+  font-family: var(--vcr-body-font);
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 3px var(--vcr-text-normal);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  color: var(--vcr-magenta);
+  text-shadow: 2px 2px 0 var(--vcr-blue), -2px -2px 0 var(--vcr-purple);
+  margin-bottom: 1.5rem;
+}
+
+/* Links */
+a {
+  color: var(--vcr-yellow);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+a:hover {
+  color: var(--vcr-bright-blue);
+  text-decoration: none;
+  text-shadow: 0 0 8px var(--vcr-bright-blue);
+}
+
+/* Page title / section headers - based on your screenshot */
+.system-title {
+  color: var(--vcr-magenta);
+  font-family: var(--vcr-display-font);
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 1px var(--vcr-blue);
+  margin-bottom: 1.5rem;
+}
+
+/* Header panel styles - matching the light blue header in screenshots */
+.panel-header {
+  background: #e9f8fb; /* Light blue background */
+  color: var(--vcr-black);
+  border-bottom: 2px solid var(--vcr-blue);
+  padding: 0.75rem 1rem;
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Info panel styles - for the light blue info panel in screenshots */
+.info-panel {
+  background-color: #e9f8fb; /* Light blue background */
+  color: var(--vcr-black);
+  border: 1px solid var(--vcr-blue);
+  border-radius: 0;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Containers */
+.container, .container-fluid {
+  padding: 1.5rem;
+  background: var(--vcr-black);
+  border: 2px solid var(--vcr-blue);
+  border-radius: 0;
+  box-shadow: 0 0 15px var(--vcr-blue), inset 0 0 10px rgba(0, 200, 255, 0.1);
+}
+
+/* Cards */
+.card {
+  background-color: var(--vcr-dark-gray);
+  border: 1px solid var(--vcr-blue);
+  border-radius: 0;
+  box-shadow: 0 0 10px rgba(0, 178, 227, 0.5);
+}
+
+.card-header {
+  background-color: var(--vcr-blue);
+  color: var(--vcr-black);
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Buttons - updated to match screenshots */
+.btn {
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0;
+  border-width: 2px;
+  letter-spacing: 1px;
+  padding: 0.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+}
+
+.btn:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.6s;
+}
+
+.btn-primary {
+  background-color: #00b2e3; /* Match screenshot button color */
+  border-color: #0099cc;
+  color: white;
+  text-shadow: none;
+  box-shadow: 0 0 10px var(--vcr-blue);
+}
+
+.btn-primary:hover {
+  background-color: var(--vcr-bright-blue);
+  border-color: var(--vcr-blue);
+  box-shadow: 0 0 20px var(--vcr-bright-blue);
+}
+
+.btn-secondary {
+  background-color: var(--vcr-purple);
+  border-color: var(--vcr-magenta);
+  color: white;
+  text-shadow: 0 0 5px var(--vcr-magenta);
+  box-shadow: 0 0 10px var(--vcr-purple);
+}
+
+.btn-secondary:hover {
+  background-color: var(--vcr-magenta);
+  border-color: var(--vcr-purple);
+  box-shadow: 0 0 20px var(--vcr-magenta);
+}
+
+.btn-success {
+  background-color: #00cc00; /* Match screenshot success button color */
+  border-color: #00aa00;
+  color: white;
+  text-shadow: 0 0 5px #00aa00;
+  box-shadow: 0 0 10px #00aa00;
+}
+
+.btn-success:hover {
+  background-color: var(--vcr-green);
+  border-color: #00aa00;
+  box-shadow: 0 0 20px var(--vcr-green);
+}
+
+.btn-danger {
+  background-color: var(--vcr-red);
+  border-color: var(--vcr-red);
+  color: white;
+  text-shadow: 0 0 5px red;
+  box-shadow: 0 0 10px var(--vcr-red);
+}
+
+.btn-danger:hover {
+  background-color: var(--vcr-orange);
+  border-color: var(--vcr-red);
+  box-shadow: 0 0 20px var(--vcr-red);
+}
+
+/* Forms - updated to match screenshots */
+.form-control {
+  background-color: var(--vcr-black);
+  border: 2px solid var(--vcr-blue);
+  border-radius: 0;
+  color: var(--vcr-bright-blue); /* Cyan text as shown in screenshots */
+  font-family: var(--vcr-body-font);
+  padding: 0.75rem;
+}
+
+.form-control:focus {
+  background-color: var(--vcr-dark-gray);
+  color: var(--vcr-bright-blue);
+  border-color: var(--vcr-magenta);
+  box-shadow: 0 0 10px var(--vcr-magenta);
+}
+
+.form-label {
+  color: var(--vcr-yellow);
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Form help text - green text as shown in screenshot */
+.form-text {
+  color: #86df76; /* Light green text from screenshot */
+  font-size: 0.875rem;
+}
+
+/* Checkbox & Radio styling */
+.form-check-input {
+  border: 1px solid var(--vcr-blue);
+}
+
+.form-check-input:checked {
+  background-color: var(--vcr-bright-blue);
+  border-color: var(--vcr-blue);
+}
+
+.form-check-label {
+  color: var(--vcr-text-normal);
+}
+
+/* Tables */
+.table {
+  color: var(--vcr-text-normal);
+  border-color: var(--vcr-blue);
+}
+
+.table thead th {
+  background-color: var(--vcr-blue);
+  color: var(--vcr-black);
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  border-color: var(--vcr-bright-blue);
+  font-weight: bold;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: rgba(0, 178, 227, 0.1);
+}
+
+/* Navbar - updated to match screenshots */
+.navbar {
+  background: linear-gradient(to right, #111111, #000000);
+  border-bottom: 2px solid var(--vcr-blue);
+  box-shadow: 0 0 15px var(--vcr-blue);
+  padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+  font-family: var(--vcr-display-font);
+  font-size: 1.5rem;
+  text-transform: lowercase;
+  color: var(--vcr-bright-blue);
+  text-shadow: 0 0 8px var(--vcr-bright-blue);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+  color: var(--vcr-yellow);
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--vcr-bright-blue);
+  text-shadow: 0 0 8px var(--vcr-bright-blue);
+}
+
+/* Alerts */
+.alert {
+  border-radius: 0;
+  border-width: 2px;
+  font-family: var(--vcr-display-font);
+}
+
+.alert-primary {
+  background-color: rgba(0, 178, 227, 0.2);
+  border-color: var(--vcr-blue);
+  color: var(--vcr-bright-blue);
+}
+
+.alert-danger {
+  background-color: rgba(255, 51, 51, 0.2);
+  border-color: var(--vcr-red);
+  color: var(--vcr-red);
+}
+
+.alert-success {
+  background-color: rgba(51, 255, 51, 0.2);
+  border-color: var(--vcr-green);
+  color: var(--vcr-green);
+}
+
+.alert-warning {
+  background-color: rgba(255, 204, 0, 0.2);
+  border-color: var(--vcr-yellow);
+  color: var(--vcr-yellow);
+}
+
+/* Badges */
+.badge {
+  font-family: var(--vcr-display-font);
+  font-weight: normal;
+  letter-spacing: 1px;
+  border-radius: 0;
+  padding: 0.4em 0.7em;
+}
+
+/* Progress bars */
+.progress {
+  background-color: var(--vcr-black);
+  border: 1px solid var(--vcr-blue);
+  border-radius: 0;
+  height: 1.5rem;
+  box-shadow: inset 0 0 8px var(--vcr-blue);
+}
+
+.progress-bar {
+  background: linear-gradient(to right, var(--vcr-blue), var(--vcr-magenta));
+  box-shadow: 0 0 8px var(--vcr-bright-blue);
+  text-shadow: 1px 1px 2px var(--vcr-black);
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Side navigation menu - matching blue nav menu in screenshots */
+.sidebar {
+  background-color: #00265a; /* Dark blue from screenshot */
+  border-right: 1px solid var(--vcr-blue);
+}
+
+.sidebar .nav-link {
+  color: var(--vcr-text-normal);
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(0, 178, 227, 0.3);
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  background-color: var(--vcr-blue);
+  color: var(--vcr-black);
+}
+
+.sidebar .nav-link i {
+  margin-right: 0.5rem;
+}
+
+/* Messages like "No recordings scheduled" */
+.empty-state-message {
+  color: var(--vcr-text-alert); /* Magenta */
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 2rem 0;
+  text-shadow: 1px 1px 3px rgba(255, 0, 255, 0.5);
+}
+
+/* Help text styling */
+.help-text {
+  color: var(--vcr-text-muted);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+/* Additional class for very important muted text that needs higher contrast */
+.text-muted {
+  color: #aaaaaa !important; /* Lighter gray for better contrast against dark background */
+}
+
+.text-muted-bright {
+  color: #bbbbbb !important; /* Even brighter option for critical muted text */
+}
+
+/* Add scanline effect - lighter than before */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.07),
+    rgba(0, 0, 0, 0.07) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Add CRT flicker animation - reduced intensity */
+@keyframes flicker {
+  0% { opacity: 0.98; }
+  5% { opacity: 0.97; }
+  10% { opacity: 0.98; }
+  15% { opacity: 0.97; }
+  20% { opacity: 0.99; }
+  25% { opacity: 0.97; }
+  30% { opacity: 0.98; }
+  35% { opacity: 0.96; }
+  40% { opacity: 0.98; }
+  45% { opacity: 0.98; }
+  50% { opacity: 0.97; }
+  55% { opacity: 0.99; }
+  60% { opacity: 0.97; }
+  65% { opacity: 0.98; }
+  70% { opacity: 0.97; }
+  75% { opacity: 0.97; }
+  80% { opacity: 0.98; }
+  85% { opacity: 0.99; }
+  90% { opacity: 0.98; }
+  95% { opacity: 0.97; }
+  100% { opacity: 0.99; }
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  animation: flicker 0.3s infinite;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.03; /* Reduced opacity for less intense effect */
+}
+
+/* Modal styling */
+.modal-content {
+  background-color: var(--vcr-dark-gray);
+  border: 2px solid var(--vcr-blue);
+  border-radius: 0;
+  box-shadow: 0 0 20px var(--vcr-blue);
+}
+
+.modal-header {
+  border-bottom-color: var(--vcr-blue);
+  background-color: var(--vcr-blue);
+  color: var(--vcr-black);
+}
+
+.modal-header .modal-title {
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  color: var(--vcr-black);
+  text-shadow: none;
+}
+
+.modal-footer {
+  border-top-color: var(--vcr-blue);
+}
+
+/* Dropdown styling */
+.dropdown-menu {
+  background-color: var(--vcr-dark-gray);
+  border: 2px solid var(--vcr-blue);
+  border-radius: 0;
+  box-shadow: 0 0 10px var(--vcr-blue);
+  padding: 0.5rem;
+}
+
+.dropdown-item {
+  font-family: var(--vcr-display-font);
+  color: var(--vcr-bright-blue);
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--vcr-blue);
+  color: var(--vcr-black);
+}
+
+/* Tab styling */
+.nav-tabs {
+  border-bottom: 2px solid var(--vcr-blue);
+}
+
+.nav-tabs .nav-link {
+  border-radius: 0;
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  color: var(--vcr-yellow);
+  padding: 0.5rem 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: transparent;
+  color: var(--vcr-bright-blue);
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--vcr-blue);
+  border-color: var(--vcr-blue);
+  color: var(--vcr-black);
+}
+
+/* Footer styling - seen in screenshots */
+footer {
+  color: var(--vcr-text-muted);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 1px solid var(--vcr-blue);
+}
+
+/* Special classes for specific sections in the app */
+
+/* Styling for the playlist management section */
+.playlist-management {
+  color: var(--vcr-yellow);
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Title for settings sections */
+.settings-group-title {
+  color: var(--vcr-yellow);
+  font-family: var(--vcr-display-font);
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+/* File input styling */
+.file-input-container {
+  border: 1px solid var(--vcr-blue);
+  background-color: var(--vcr-black);
+  color: var(--vcr-bright-blue);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Horizontal rule styling */
+hr {
+  border-color: var(--vcr-blue);
+  opacity: 0.5;
+  margin: 2rem 0;
+}
+
+/* Add fonts at-import for easier integration */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@font-face {
+  font-family: 'VCR OSD Mono';
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/vcr-osd-mono/VCR-OSD-Mono.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

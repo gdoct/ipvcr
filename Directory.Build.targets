@@ -1,0 +1,9 @@
+<Project>
+  <Target Name="DockerBuild" AfterTargets="Build" Condition="'$(BuildDockerImage)' == 'true'">
+    <Exec Command="docker compose build" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+  </Target>
+
+  <Target Name="DockerSave" AfterTargets="DockerBuild" Condition="'$(BuildDockerImage)' == 'true'">
+    <Exec Command="docker save -o bin/ipvcr-web.img ipvcr-web" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+  </Target>
+</Project>
