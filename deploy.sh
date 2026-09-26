@@ -22,7 +22,7 @@ if ! ssh -o BatchMode=yes -o ConnectTimeout=5 "$REMOTE_SERVER" exit; then
     exit 1
 fi
 scp bin/ipvcr-web.img $REMOTE_SERVER:~ 
-ssh $REMOTE_SERVER << 'ENDSSH'
+ssh $REMOTE_SERVER "export IPVCR_USERNAME=$(printf %q "$IPVCR_USERNAME") IPVCR_PASSWORD=$(printf %q "$IPVCR_PASSWORD"); bash -s" << 'ENDSSH'
 
 # remove the running container
 echo "Removing the running container..."
@@ -38,7 +38,7 @@ docker load -i ipvcr-web.img
 
 # deploy the new image to a new container
 echo "Deploying the new image to a new container..."
-docker run --name ipvcr-web --restart unless-stopped --network host -d -v /media/series:/media -v /var/lib/iptvscheduler:/data ipvcr-web:latest
+docker run --name ipvcr-web --restart unless-stopped --network host -d -e IPVCR_USERNAME -e IPVCR_PASSWORD -v /media/series:/media -v /var/lib/iptvscheduler:/data ipvcr-web:latest
 
 # remove the image from the remote server
 echo "Removing the image from the remote server..."

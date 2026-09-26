@@ -34,6 +34,18 @@ public class Program
         var tokenManager = new TokenManager();
         var settingsService = new SettingsService(fileSystem, tokenManager);
 
+        // Allow the admin credentials to be set from the environment (e.g. docker run -e)
+        var envUsername = Environment.GetEnvironmentVariable("IPVCR_USERNAME");
+        if (!string.IsNullOrWhiteSpace(envUsername))
+        {
+            settingsService.AdminPasswordSettings = new AdminPasswordSettings { AdminUsername = envUsername };
+        }
+        var envPassword = Environment.GetEnvironmentVariable("IPVCR_PASSWORD");
+        if (!string.IsNullOrWhiteSpace(envPassword))
+        {
+            settingsService.UpdateAdminPassword(envPassword);
+        }
+
         var certpath = settingsService.SslSettings.CertificatePath ?? string.Empty;
         var useSsl = settingsService.SslSettings.UseSsl;
 
