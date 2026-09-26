@@ -17,7 +17,7 @@ public partial class AtWrapper(IFileSystem fileSystem, IProcessRunner processRun
         var taskjson = JsonSerializer.Serialize(task);
         //Environment.SetEnvironmentVariable("TASK_DEFINITION", taskjson);
         string startTimeFormatted = task.StartTime.ToLocalTime().ToString(AT_DATE_FORMAT);
-        string atCommand = $"echo \"{GetScriptFilename(task)}\" | at {startTimeFormatted}";
+        string atCommand = $"echo 'bash {GetScriptFilename(task)}' | at {startTimeFormatted}";
         var (output, error, exitCode) = base.ExecuteShellCommand(atCommand);
         //var expected = "warning: commands will be executed using /bin/sh\njob 66 at Thu Apr 17 14:54:00 2025\n\n";
         var lines = error.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);

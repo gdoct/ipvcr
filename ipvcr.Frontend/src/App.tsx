@@ -93,7 +93,7 @@ function AppContent() {
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </main>
-      <footer className="bg-light text-center text-muted py-3 mt-5">
+      <footer className="bg-body-tertiary text-center text-muted py-3 mt-5">
         <div className="container-fluid">
           <p className="mb-0">ipvcr &copy; {new Date().getFullYear()}</p>
         </div>

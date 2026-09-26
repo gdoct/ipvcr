@@ -56,7 +56,7 @@ const PlaylistSettingsComponent: React.FC<PlaylistSettingsProps> = ({
 
   return (
     <Card className="mb-4">
-      <Card.Header className="bg-light">
+      <Card.Header className="bg-body-tertiary">
         <i className="bi bi-music-note-list me-2"></i>Playlist Management
       </Card.Header>
       <Card.Body>
@@ -120,7 +120,7 @@ const PlaylistSettingsComponent: React.FC<PlaylistSettingsProps> = ({
 
           <Col md={12} lg={6}>
             <Card className="h-100">
-              <Card.Header className="bg-light">
+              <Card.Header className="bg-body-tertiary">
                 <i className="bi bi-cloud-upload me-2"></i>Upload M3U Playlist
               </Card.Header>
               <Card.Body>

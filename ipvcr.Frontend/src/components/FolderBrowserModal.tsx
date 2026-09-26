@@ -151,7 +151,7 @@ const FolderBrowserModal: React.FC<FolderBrowserModalProps> = ({
       </Modal.Header>
       <Modal.Body className="p-0">
         {/* Current path breadcrumb */}
-        <div className="bg-light p-3 border-bottom">
+        <div className="bg-body-tertiary p-3 border-bottom">
           <div className="d-flex align-items-center flex-wrap gap-1">
             <span className="fw-bold me-2">Location:</span>
             <span className="text-primary">
@@ -230,7 +230,7 @@ const FolderBrowserModal: React.FC<FolderBrowserModalProps> = ({
           </div>
         )}
       </Modal.Body>
-      <Modal.Footer className="d-flex justify-content-between bg-light">
+      <Modal.Footer className="d-flex justify-content-between bg-body-tertiary">
         <Button 
           variant="outline-secondary" 
           onClick={() => setShowNewFolderInput(true)} 

@@ -62,7 +62,7 @@ const UserManagementSettingsComponent: React.FC<UserManagementSettingsProps> = (
 
   return (
     <Card className="mb-4">
-      <Card.Header className="bg-light">
+      <Card.Header className="bg-body-tertiary">
         <i className="bi bi-people-fill me-2"></i>User Management
       </Card.Header>
       <Card.Body>
@@ -119,7 +119,7 @@ const UserManagementSettingsComponent: React.FC<UserManagementSettingsProps> = (
 
           <Col md={12} lg={6}>
             <Card className="mb-3">
-              <Card.Header className="bg-light">
+              <Card.Header className="bg-body-tertiary">
                 <i className="bi bi-person-plus-fill me-2"></i>User Registration
               </Card.Header>
               <Card.Body>

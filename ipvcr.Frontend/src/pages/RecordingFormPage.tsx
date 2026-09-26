@@ -25,8 +25,8 @@ const RecordingFormPage: React.FC = () => {
     description: '',
     channelUri: '',
     channelName: '',
-    startTime: getTomorrowDatetime(),
-    endTime: getTomorrowDatetimePlusHour(),
+    startTime: getDefaultStartDatetime(),
+    endTime: getDefaultEndDatetime(),
     filename: '',
     ffmpegSettings: undefined
   });
@@ -167,19 +167,28 @@ const RecordingFormPage: React.FC = () => {
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
-  // Helper to get tomorrow's date
-  function getTomorrowDatetime(): string {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow.toISOString().slice(0, 16);
+  // Format a date as a datetime-local input value in the browser's local time
+  function toLocalInputValue(date: Date): string {
+    const pad = (n: number) => String(n).padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
   }
 
-  // Helper to get tomorrow plus one hour
-  function getTomorrowDatetimePlusHour(): string {
-    const tomorrowPlusHour = new Date();
-    tomorrowPlusHour.setDate(tomorrowPlusHour.getDate() + 1);
-    tomorrowPlusHour.setHours(tomorrowPlusHour.getHours() + 1);
-    return tomorrowPlusHour.toISOString().slice(0, 16);
+  // Default start: the next full hour, local time
+  function getDefaultStartDate(): Date {
+    const start = new Date();
+    start.setHours(start.getHours() + 1, 0, 0, 0);
+    return start;
+  }
+
+  function getDefaultStartDatetime(): string {
+    return toLocalInputValue(getDefaultStartDate());
+  }
+
+  // Default end: one hour after the default start
+  function getDefaultEndDatetime(): string {
+    const end = getDefaultStartDate();
+    end.setHours(end.getHours() + 1);
+    return toLocalInputValue(end);
   }
 
   // Helper to parse channel name
@@ -240,7 +249,10 @@ const RecordingFormPage: React.FC = () => {
     // Always show dropdown if we have a query
     if (query) {
       setShowDropdown(true);
+      // show "Searching..." during the debounce instead of "No channels found"
+      setIsSearching(true);
     } else {
+      setIsSearching(false);
       setShowDropdown(false);
       setSearchResults([]);
       return;
@@ -328,8 +340,7 @@ const RecordingFormPage: React.FC = () => {
     if (name && startTimeStr && channelName) {
       // Generate filename
       const startDate = new Date(startTimeStr);
-      const startTimeFormatted = formatFileDate(startDate) + 
-        startTimeStr.split('T')[1].replace(':', '').substring(0, 4);
+      const startTimeFormatted = formatFileDate(startDate);
       
       const sanitizedName = name.replace(/ /g, '_').toLowerCase();
       // Important: Always use the provided folderPath parameter first, fall back to state only if not provided
@@ -561,8 +572,8 @@ const RecordingFormPage: React.FC = () => {
                     </InputGroup.Text>
                     <Form.Control
                       readOnly
-                      value={baseRecordingPath + (selectedFolder ? '/' + selectedFolder : '')}
-                      className="bg-light"
+                      value={selectedFolder || baseRecordingPath}
+                      className="bg-body-tertiary"
                     />
                     <Button 
                       variant="outline-primary" 
@@ -577,7 +588,7 @@ const RecordingFormPage: React.FC = () => {
                 {/* Encoding settings card */}
                 <Card className="mb-3 mt-3">
                   <Card.Header 
-                    className="bg-light py-2 d-flex justify-content-between align-items-center"
+                    className="bg-body-tertiary py-2 d-flex justify-content-between align-items-center"
                     onClick={toggleAdvancedSettings}
                     style={{ cursor: 'pointer' }}
                   >

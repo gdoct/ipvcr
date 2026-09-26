@@ -309,7 +309,7 @@ const RecordingForm: React.FC<RecordingFormProps> = ({
                   value={formData.description || ''}
                   onChange={handleInputChange}
                   readOnly
-                  className="bg-light text-muted"
+                  className="bg-body-tertiary text-muted"
                 />
               </Form.Group>
             </Col>
@@ -417,7 +417,7 @@ const RecordingForm: React.FC<RecordingFormProps> = ({
                   <i className="bi bi-file-earmark-play"></i>
                 </InputGroup.Text>
                 <Form.Control
-                  className="bg-light text-muted text-truncate"
+                  className="bg-body-tertiary text-muted text-truncate"
                   value={formData.filename}
                   disabled
                 />
@@ -426,7 +426,7 @@ const RecordingForm: React.FC<RecordingFormProps> = ({
           )}
         </Form>
       </Modal.Body>
-      <div className="card-footer bg-light p-3 d-flex justify-content-end">
+      <div className="card-footer bg-body-tertiary p-3 d-flex justify-content-end">
         <Button variant="secondary" className="me-2" onClick={onHide}>
           <i className="bi bi-x-circle me-1"></i>Cancel
         </Button>

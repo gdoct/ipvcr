@@ -202,7 +202,7 @@ const RecordingsPage: React.FC = () => {
       ) : (
         <div className="row mb-4">
           <div className="col-md-12">
-            <Card className="bg-light">
+            <Card className="bg-body-tertiary">
               <Card.Body>
                 <div className="d-flex align-items-center">
                   <i className="bi bi-info-circle text-primary me-2 fs-4"></i>

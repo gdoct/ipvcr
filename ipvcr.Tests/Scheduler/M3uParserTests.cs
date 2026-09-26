@@ -49,6 +49,40 @@ namespace ipvcr.Tests.Scheduler
         }
 
         [Fact]
+        public async Task M3uParser_ParseM3uFile_EmptyTvgId_StillReturnsChannels()
+        {
+            // Arrange
+            var m3uContent = "#EXTM3U\r\n" +
+                             "#EXTINF:-1 tvg-id=\"\" tvg-name=\"ODIDO | NPO 1\" tvg-logo=\"\" group-title=\"NL | ODIDO\",ODIDO | NPO 1\r\n" +
+                             "http://example.com/stream1\r\n" +
+                             "#EXTINF:-1 tvg-id=\"\" tvg-name=\"\" tvg-logo=\"\" group-title=\"NL | ODIDO\",ODIDO | NPO 2, extra\r\n" +
+                             "http://example.com/stream2\r\n";
+
+            var fs = new Mock<IFileSystem>();
+            var file = new Mock<IFile>();
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(m3uContent));
+            fs.SetupGet(x => x.File).Returns(file.Object);
+            file.Setup(x => x.Exists(It.IsAny<string>())).Returns(true);
+            file.Setup(x => x.OpenRead(It.IsAny<string>()))
+                .Returns(new MockedFileSystemStream(stream, "test.m3u", true));
+            var parser = new M3uParser(fs.Object, "test.m3u");
+
+            // Act
+            var result = new List<ChannelInfo>();
+            await foreach (var channel in parser.ParsePlaylistAsync())
+            {
+                result.Add(channel);
+            }
+
+            // Assert
+            Assert.Equal(2, result.Count);
+            Assert.Equal("ODIDO | NPO 1", result[0].Name);
+            Assert.Equal(new Uri("http://example.com/stream1"), result[0].Uri);
+            Assert.Equal("ODIDO | NPO 2, extra", result[1].Name);
+            Assert.Equal("NL | ODIDO", result[1].Group);
+        }
+
+        [Fact]
         public void M3uParser_Constructor_IncorrectArgs_ThrowsArgumentNullException()
         {
             // Arrange

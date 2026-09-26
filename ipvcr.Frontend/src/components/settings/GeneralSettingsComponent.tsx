@@ -11,7 +11,7 @@ interface GeneralSettingsProps {
 const GeneralSettingsComponent: React.FC<GeneralSettingsProps> = ({ settings, handleInputChange }) => {
   return (
     <Card className="mb-4">
-      <Card.Header className="bg-light">
+      <Card.Header className="bg-body-tertiary">
         <i className="bi bi-sliders me-2"></i>General Settings
       </Card.Header>
       <Card.Body>

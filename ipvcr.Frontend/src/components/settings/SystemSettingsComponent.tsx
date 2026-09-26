@@ -113,7 +113,7 @@ const SystemSettingsComponent: React.FC<SystemSettingsProps> = ({ setSuccess, se
   return (
     <>
       <Card className="mb-4">
-        <Card.Header className="bg-light">
+        <Card.Header className="bg-body-tertiary">
           <i className="bi bi-pc-display me-2"></i>System Maintenance
         </Card.Header>
         <Card.Body>

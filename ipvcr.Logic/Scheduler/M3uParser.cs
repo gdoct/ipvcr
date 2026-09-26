@@ -36,6 +36,7 @@ public class M3uParser
         string name = string.Empty;
         string logo = string.Empty;
         string group = string.Empty;
+        bool pendingEntry = false;
 
         string? line;
         while ((line = await reader.ReadLineAsync()) != null)
@@ -52,17 +53,31 @@ public class M3uParser
                     group = groupTitle;
                 }
                 id = tvgId;
-                name = tvgName;
+                // fall back to the display name after the comma when tvg-name is missing
+                name = !string.IsNullOrWhiteSpace(tvgName) ? tvgName : GetDisplayName(line);
                 logo = tvgLogo;
+                pendingEntry = true;
             }
-            else if (!string.IsNullOrWhiteSpace(id) &&
+            else if (pendingEntry &&
                 Uri.IsWellFormedUriString(line, UriKind.Absolute))
             {
                 var channel = new ChannelInfo(id, name, logo, new Uri(line), group);
                 yield return channel;
-                id = string.Empty;
+                pendingEntry = false;
             }
         }
+    }
+
+    private static string GetDisplayName(string extinfLine)
+    {
+        // the display name follows the first comma outside of the quoted attributes
+        var inQuotes = false;
+        for (var i = 0; i < extinfLine.Length; i++)
+        {
+            if (extinfLine[i] == '"') inQuotes = !inQuotes;
+            else if (extinfLine[i] == ',' && !inQuotes) return extinfLine[(i + 1)..].Trim();
+        }
+        return string.Empty;
     }
 
     private static bool TryParseGroup(string line, out string name)

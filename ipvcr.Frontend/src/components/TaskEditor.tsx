@@ -192,7 +192,7 @@ const TaskEditor: React.FC<TaskEditorProps> = ({
           </div>
         </div>
       </Modal.Body>
-      <Modal.Footer className="bg-light p-3">
+      <Modal.Footer className="bg-body-tertiary p-3">
         <Button variant="secondary" className="me-2" onClick={handleClose}>
           <i className="bi bi-x-circle me-1"></i>Cancel
         </Button>

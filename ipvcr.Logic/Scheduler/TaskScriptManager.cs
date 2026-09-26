@@ -93,7 +93,7 @@ export TASK_INNER_DEFINITION='{task.InnerScheduledTask}'
 
 {task.Command}
 
-rm -f ""{task.Id}.sh""";
+rm -f ""$0""";
         }
         else
         {
@@ -106,8 +106,8 @@ export TASK_INNER_DEFINITION={task.InnerScheduledTask}
 
 {task.Command}
 
-mkdir -p completed
-mv ""{task.Id}.sh"" completed/";
+mkdir -p ""$(dirname ""$0"")/completed""
+mv ""$0"" ""$(dirname ""$0"")/completed/""";
         }
     }
 

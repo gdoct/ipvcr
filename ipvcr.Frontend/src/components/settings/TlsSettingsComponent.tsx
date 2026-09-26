@@ -68,7 +68,7 @@ const TlsSettingsComponent: React.FC<TlsSettingsProps> = ({
 
   return (
     <Card className="mb-4">
-      <Card.Header className="bg-light d-flex justify-content-between align-items-center">
+      <Card.Header className="bg-body-tertiary d-flex justify-content-between align-items-center">
         <div>
           <i className="bi bi-shield-lock-fill me-2"></i>SSL Settings
         </div>
@@ -172,7 +172,7 @@ const TlsSettingsComponent: React.FC<TlsSettingsProps> = ({
           
           <Col md={12} lg={6}>
             <Card className={`mb-3 ${settings.useSsl ? 'border-success' : 'border-secondary'}`}>
-              <Card.Header className={`${settings.useSsl ? 'bg-success text-white' : 'bg-light'}`}>
+              <Card.Header className={`${settings.useSsl ? 'bg-success text-white' : 'bg-body-tertiary'}`}>
                 <i className={`bi ${settings.useSsl ? 'bi-shield-fill-check' : 'bi-shield-lock'} me-2`}></i>
                 SSL Status
               </Card.Header>
