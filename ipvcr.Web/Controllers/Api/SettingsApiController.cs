@@ -116,7 +116,8 @@ public class SettingsApiController(
             return BadRequest("Please upload a valid M3U file.");
         }
 
-        var uploadPath = _settingsManager.PlaylistSettings.M3uPlaylistPath;
+        // M3uPlaylistPath points to the playlist file; upload next to it
+        var uploadPath = Path.GetDirectoryName(_settingsManager.PlaylistSettings.M3uPlaylistPath);
         if (string.IsNullOrEmpty(uploadPath))
         {
             return BadRequest("Upload path is not configured.");
@@ -149,7 +150,7 @@ public class SettingsApiController(
             return BadRequest("Upload path is not writable.");
         }
 
-        var filePath = Path.Combine(uploadPath, file.FileName);
+        var filePath = Path.Combine(uploadPath, Path.GetFileName(file.FileName));
 
         try
         {
